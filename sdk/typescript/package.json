@@ -38,7 +38,7 @@
   "homepage": "https://heliusone.com/newsapi",
   "repository": {
     "type": "git",
-    "url": "https://github.com/HeliusOne/h1news.git",
+    "url": "git+https://github.com/HeliusOne/h1news.git",
     "directory": "sdk/typescript"
   },
   "engines": {
