@@ -1,0 +1,54 @@
+{
+  "name": "@heliusone/h1news",
+  "version": "0.1.0",
+  "description": "TypeScript client for the H1 News API \u2014 real-time, ticker-tagged, sentiment-scored financial news over REST and WebSocket.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsc -p tsconfig.json && tsc -p tsconfig.cjs.json && node -e \"require('fs').renameSync('dist/cjs/index.js','dist/index.cjs');require('fs').rmSync('dist/cjs',{recursive:true})\"",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "tsc -p tsconfig.test.json && node --test dist-test/test/*.test.js",
+    "prepublishOnly": "npm run typecheck && npm test && npm run build"
+  },
+  "keywords": [
+    "finance",
+    "news",
+    "stocks",
+    "sentiment",
+    "websocket",
+    "trading",
+    "api"
+  ],
+  "homepage": "https://heliusone.com/newsapi",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HeliusOne/h1news.git",
+    "directory": "sdk/typescript"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.0",
+    "@types/node": "^20.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

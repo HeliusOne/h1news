@@ -1,0 +1,1089 @@
+{
+  "info": {
+    "_postman_id": "b3617144-b250-52b8-a33d-279659358009",
+    "name": "H1 News API",
+    "description": "Real-time, ticker-tagged, sentiment-scored financial news from 135+ sources. Set the `api_key` collection variable (get one at https://heliusone.com/newsapi). Full reference: https://api.heliusone.com/docs. The WebSocket stream (wss://api.heliusone.com/v1/stream?api_key=\u2026) is not a REST request \u2014 use Postman's WebSocket client, or mint a token with the Stream folder for a browser.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "News",
+      "item": [
+        {
+          "name": "List News",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/news?ticker=AAPL&date=last7days&limit=10",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "news"
+              ],
+              "query": [
+                {
+                  "key": "ticker",
+                  "value": "AAPL",
+                  "description": "One or more symbols, comma-separated",
+                  "disabled": false
+                },
+                {
+                  "key": "match",
+                  "value": "",
+                  "description": "any | all (when multiple tickers given)",
+                  "disabled": true
+                },
+                {
+                  "key": "collection",
+                  "value": "",
+                  "description": "Curated basket, e.g. FAANG, EV, AI",
+                  "disabled": true
+                },
+                {
+                  "key": "source",
+                  "value": "Federal Reserve",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "exclude_source",
+                  "value": "",
+                  "description": "Source(s) to exclude, comma-separated",
+                  "disabled": true
+                },
+                {
+                  "key": "type",
+                  "value": "",
+                  "description": "article | press_release | filing | social",
+                  "disabled": true
+                },
+                {
+                  "key": "category",
+                  "value": "earnings",
+                  "description": "Topic(s), comma-separated: markets, earnings, macro, world, commodities, forex, crypto, halts, filings, regulatory, general",
+                  "disabled": true
+                },
+                {
+                  "key": "exclude_category",
+                  "value": "",
+                  "description": "Category(ies) to exclude, comma-separated",
+                  "disabled": true
+                },
+                {
+                  "key": "language",
+                  "value": "en",
+                  "description": "ISO-639-1 code(s), comma-separated, e.g. en",
+                  "disabled": true
+                },
+                {
+                  "key": "region",
+                  "value": "us",
+                  "description": "Source region(s), comma-separated: us, uk, eu, jp, br, mx, latam, ca, au, in, cn, asia, global",
+                  "disabled": true
+                },
+                {
+                  "key": "sentiment",
+                  "value": "negative",
+                  "description": "positive | negative | neutral",
+                  "disabled": true
+                },
+                {
+                  "key": "search",
+                  "value": "guidance",
+                  "description": "Keyword(s); supports AND / OR",
+                  "disabled": true
+                },
+                {
+                  "key": "date",
+                  "value": "last7days",
+                  "description": "Preset: today, yesterday, last7days, ...",
+                  "disabled": false
+                },
+                {
+                  "key": "since",
+                  "value": "",
+                  "description": "ISO lower bound",
+                  "disabled": true
+                },
+                {
+                  "key": "until",
+                  "value": "",
+                  "description": "ISO upper bound (exclusive)",
+                  "disabled": true
+                },
+                {
+                  "key": "since_id",
+                  "value": "",
+                  "description": "Return only rows with id > this (gapless stream backfill)",
+                  "disabled": true
+                },
+                {
+                  "key": "sort",
+                  "value": "",
+                  "description": "newest | oldest",
+                  "disabled": true
+                },
+                {
+                  "key": "news_id",
+                  "value": "",
+                  "description": "Lookup by id(s), comma-separated",
+                  "disabled": true
+                },
+                {
+                  "key": "fallback",
+                  "value": "",
+                  "description": "If a ticker filter yields nothing, return general news",
+                  "disabled": true
+                },
+                {
+                  "key": "format",
+                  "value": "",
+                  "description": "json | csv",
+                  "disabled": true
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "",
+                  "disabled": false
+                },
+                {
+                  "key": "offset",
+                  "value": "",
+                  "description": "",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Query historical news. This is the REST half; /v1/stream is the live half."
+          }
+        },
+        {
+          "name": "General News",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/news/general?date=last7days&limit=10",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "news",
+                "general"
+              ],
+              "query": [
+                {
+                  "key": "sentiment",
+                  "value": "negative",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "type",
+                  "value": "",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "exclude_source",
+                  "value": "",
+                  "description": "Source(s) to exclude, comma-separated",
+                  "disabled": true
+                },
+                {
+                  "key": "language",
+                  "value": "en",
+                  "description": "ISO-639-1 code(s), comma-separated, e.g. en",
+                  "disabled": true
+                },
+                {
+                  "key": "region",
+                  "value": "us",
+                  "description": "Source region(s), comma-separated: us, uk, eu, jp, br, mx, latam, ca, au, in, cn, asia, global",
+                  "disabled": true
+                },
+                {
+                  "key": "date",
+                  "value": "last7days",
+                  "description": "",
+                  "disabled": false
+                },
+                {
+                  "key": "since",
+                  "value": "",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "until",
+                  "value": "",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "sort",
+                  "value": "",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "format",
+                  "value": "",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "",
+                  "disabled": false
+                },
+                {
+                  "key": "offset",
+                  "value": "",
+                  "description": "",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Broad market news not tied to any ticker."
+          }
+        },
+        {
+          "name": "Earnings News",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/news/earnings?ticker=AAPL&date=last7days&limit=10",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "news",
+                "earnings"
+              ],
+              "query": [
+                {
+                  "key": "ticker",
+                  "value": "AAPL",
+                  "description": "One or more symbols, comma-separated",
+                  "disabled": false
+                },
+                {
+                  "key": "sentiment",
+                  "value": "negative",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "search",
+                  "value": "guidance",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "date",
+                  "value": "last7days",
+                  "description": "",
+                  "disabled": false
+                },
+                {
+                  "key": "since",
+                  "value": "",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "until",
+                  "value": "",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "sort",
+                  "value": "",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "format",
+                  "value": "",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "",
+                  "disabled": false
+                },
+                {
+                  "key": "offset",
+                  "value": "",
+                  "description": "",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Earnings news: results wires (GlobeNewswire Earnings), CNBC Earnings and\nearnings query feeds. Shorthand for /v1/news?category=earnings. For the\nupcoming earnings *calendar*, see /v1/earnings-calendar."
+          }
+        },
+        {
+          "name": "Halt News",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/news/halts?ticker=AAPL&date=last7days&limit=10",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "news",
+                "halts"
+              ],
+              "query": [
+                {
+                  "key": "ticker",
+                  "value": "AAPL",
+                  "description": "",
+                  "disabled": false
+                },
+                {
+                  "key": "date",
+                  "value": "last7days",
+                  "description": "",
+                  "disabled": false
+                },
+                {
+                  "key": "since",
+                  "value": "",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "until",
+                  "value": "",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "sort",
+                  "value": "",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "format",
+                  "value": "",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "",
+                  "disabled": false
+                },
+                {
+                  "key": "offset",
+                  "value": "",
+                  "description": "",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Trading halts / resumptions (Nasdaq Trader halt feed, ~20s latency).\nShorthand for /v1/news?category=halts."
+          }
+        },
+        {
+          "name": "Filings News",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/news/filings?ticker=AAPL&form=8-K&date=last7days&limit=10",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "news",
+                "filings"
+              ],
+              "query": [
+                {
+                  "key": "ticker",
+                  "value": "AAPL",
+                  "description": "One or more symbols, comma-separated",
+                  "disabled": false
+                },
+                {
+                  "key": "form",
+                  "value": "8-K",
+                  "description": "SEC form type: 8-K, 4, S-1, SC 13D, 10-Q",
+                  "disabled": false
+                },
+                {
+                  "key": "search",
+                  "value": "guidance",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "date",
+                  "value": "last7days",
+                  "description": "",
+                  "disabled": false
+                },
+                {
+                  "key": "since",
+                  "value": "",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "until",
+                  "value": "",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "sort",
+                  "value": "",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "format",
+                  "value": "",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "",
+                  "disabled": false
+                },
+                {
+                  "key": "offset",
+                  "value": "",
+                  "description": "",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "SEC filings surfaced as news (EDGAR, ~20s latency): 8-K material events,\nForm 4 insider trades, S-1 registrations, SC 13D activist stakes, 10-Q\nreports. Shorthand for /v1/news?category=filings, plus a form filter."
+          }
+        },
+        {
+          "name": "Macro News",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/news/macro?date=last7days&limit=10",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "news",
+                "macro"
+              ],
+              "query": [
+                {
+                  "key": "source",
+                  "value": "Federal Reserve",
+                  "description": "e.g. Federal Reserve, European Central Bank",
+                  "disabled": true
+                },
+                {
+                  "key": "sentiment",
+                  "value": "negative",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "search",
+                  "value": "guidance",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "date",
+                  "value": "last7days",
+                  "description": "",
+                  "disabled": false
+                },
+                {
+                  "key": "since",
+                  "value": "",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "until",
+                  "value": "",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "sort",
+                  "value": "",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "format",
+                  "value": "",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "",
+                  "disabled": false
+                },
+                {
+                  "key": "offset",
+                  "value": "",
+                  "description": "",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Central-bank & economy news: Fed, ECB, BoE, BoJ, CFTC plus economy\nfeeds. Shorthand for /v1/news?category=macro, plus a source filter."
+          }
+        },
+        {
+          "name": "Category News",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/news/category/regulatory?ticker=AAPL&date=last7days&limit=10",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "news",
+                "category",
+                "regulatory"
+              ],
+              "query": [
+                {
+                  "key": "ticker",
+                  "value": "AAPL",
+                  "description": "",
+                  "disabled": false
+                },
+                {
+                  "key": "source",
+                  "value": "Federal Reserve",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "sentiment",
+                  "value": "negative",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "search",
+                  "value": "guidance",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "date",
+                  "value": "last7days",
+                  "description": "",
+                  "disabled": false
+                },
+                {
+                  "key": "since",
+                  "value": "",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "until",
+                  "value": "",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "sort",
+                  "value": "",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "format",
+                  "value": "",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "",
+                  "disabled": false
+                },
+                {
+                  "key": "offset",
+                  "value": "",
+                  "description": "",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "News for any category: markets, earnings, macro, world, commodities,\nforex, crypto, halts, filings, general."
+          }
+        },
+        {
+          "name": "Get Article",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/news/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "news",
+                "1"
+              ],
+              "query": []
+            },
+            "description": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "Analytics",
+      "item": [
+        {
+          "name": "Sentiment Stats",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/sentiment?ticker=AAPL&date=last7days",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "sentiment"
+              ],
+              "query": [
+                {
+                  "key": "ticker",
+                  "value": "AAPL",
+                  "description": "Per-ticker; omit for whole market",
+                  "disabled": false
+                },
+                {
+                  "key": "date",
+                  "value": "last7days",
+                  "description": "Preset window",
+                  "disabled": false
+                }
+              ]
+            },
+            "description": "Daily sentiment breakdown for a ticker or the whole market."
+          }
+        },
+        {
+          "name": "Top Mentioned",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/top-mentioned?date=last7days&limit=10",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "top-mentioned"
+              ],
+              "query": [
+                {
+                  "key": "date",
+                  "value": "last7days",
+                  "description": "Preset window, e.g. today, last7days",
+                  "disabled": false
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "",
+                  "disabled": false
+                }
+              ]
+            },
+            "description": "Most-mentioned tickers over the window."
+          }
+        },
+        {
+          "name": "Earnings Calendar",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/earnings-calendar?ticker=AAPL&days=14",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "earnings-calendar"
+              ],
+              "query": [
+                {
+                  "key": "ticker",
+                  "value": "AAPL",
+                  "description": "Filter to one symbol",
+                  "disabled": false
+                },
+                {
+                  "key": "days",
+                  "value": "14",
+                  "description": "Window from today, in days",
+                  "disabled": false
+                }
+              ]
+            },
+            "description": "Upcoming earnings calendar (via Finnhub). For earnings *news*, see\n/v1/news/earnings."
+          }
+        },
+        {
+          "name": "Ratings",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/ratings?ticker=AAPL",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "ratings"
+              ],
+              "query": [
+                {
+                  "key": "ticker",
+                  "value": "AAPL",
+                  "description": "Symbol, e.g. AAPL",
+                  "disabled": false
+                }
+              ]
+            },
+            "description": "Analyst recommendation trends (buy/hold/sell) for a ticker (via Finnhub)."
+          }
+        },
+        {
+          "name": "Sundown Digest",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{api_key}}"
+              },
+              {
+                "key": "X-Anthropic-Key",
+                "value": "{{anthropic_key}}",
+                "disabled": true,
+                "description": "Only needed to generate a fresh digest (cache miss or refresh=true)"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/sundown-digest",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "sundown-digest"
+              ],
+              "query": [
+                {
+                  "key": "refresh",
+                  "value": "",
+                  "description": "Bypass the daily cache and regenerate",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "A Claude-generated end-of-day market recap from the day's top news.\n\nThe server holds no Anthropic key \u2014 bring your own in X-Anthropic-Key.\nOnce generated, the digest is cached for the day and served to any\nauthenticated caller without a key."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Reference",
+      "item": [
+        {
+          "name": "List Tickers",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/tickers?limit=10",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "tickers"
+              ],
+              "query": [
+                {
+                  "key": "search",
+                  "value": "guidance",
+                  "description": "Prefix filter, e.g. AA",
+                  "disabled": true
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "",
+                  "disabled": false
+                }
+              ]
+            },
+            "description": "The symbol universe known to the tagger (loaded from SEC)."
+          }
+        },
+        {
+          "name": "Sources",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/sources?active_only=true",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "sources"
+              ],
+              "query": [
+                {
+                  "key": "active_only",
+                  "value": "true",
+                  "description": "Only sources currently being ingested",
+                  "disabled": false
+                }
+              ]
+            },
+            "description": "Source names with article counts. Use these exact names with the\nsource / exclude_source filters (matching is case-insensitive). `active`\nmarks sources currently being ingested; inactive ones are retired feeds\nthat still have stored history."
+          }
+        },
+        {
+          "name": "Categories",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/categories",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "categories"
+              ],
+              "query": []
+            },
+            "description": "All categories currently in the feed, with counts. Use these with the\ncategory filters on /v1/news, /v1/news/category/{category} and the stream."
+          }
+        },
+        {
+          "name": "Usage",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/usage",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "usage"
+              ],
+              "query": []
+            },
+            "description": "Current billing-month usage for the calling key (powers My Account)."
+          }
+        },
+        {
+          "name": "Healthcheck",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/health",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "health"
+              ],
+              "query": []
+            },
+            "description": "Liveness that can actually fail.\n\nThis used to return a literal `{\"status\": \"ok\"}`, which meant it stayed\ngreen while the poller was dead and no news had arrived for hours \u2014 the one\nthing a health check on this service exists to catch.\n\nThree states, and the HTTP status is what monitoring alerts on:\n  200 ok        poller cycling, every source producing\n  200 degraded  some sources stale or failing; news partially flowing\n  503 down      poller stopped, or the database is unreachable\n\n`degraded` deliberately stays 200: partial ingestion is not an outage, and\npaging on it would train everyone to ignore the page. It is reported in the\nbody and in detail at /admin/health."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Stream",
+      "item": [
+        {
+          "name": "Stream Token",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/stream/token",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "v1",
+                "stream",
+                "token"
+              ],
+              "query": []
+            },
+            "description": "Mint a short-lived token for the live stream.\n\nFor servers that front a browser: keep your API key server-side, call this,\nand hand the browser the token. It opens `ws_url?token=...` directly \u2014 the\nkey never reaches the client, and your server doesn't have to hold the\nsocket open. Tokens expire after `expires_in` seconds and are only checked\nat connect time (an established stream is never cut by expiry); fetch a\nfresh one before each reconnect. Charges one rate-limit unit, no quota."
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "https://api.heliusone.com"
+    },
+    {
+      "key": "api_key",
+      "value": "",
+      "description": "Your H1 News API key"
+    },
+    {
+      "key": "anthropic_key",
+      "value": "",
+      "description": "Optional: only to generate the Sundown Digest"
+    }
+  ]
+}

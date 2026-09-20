@@ -1,0 +1,25 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "h1news-mcp"
+version = "0.1.0"
+description = "MCP server for the H1 News API — give Claude, Cursor or any MCP client real-time, ticker-tagged, sentiment-scored financial news."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.10"
+authors = [{ name = "HeliusOne", email = "support@heliusone.com" }]
+keywords = ["mcp", "finance", "news", "stocks", "sentiment", "claude", "agents"]
+dependencies = ["mcp>=1.2", "h1news>=0.1"]
+
+[project.scripts]
+h1news-mcp = "h1news_mcp.server:main"
+
+[project.urls]
+Homepage = "https://heliusone.com/newsapi"
+Source = "https://github.com/HeliusOne/h1news/tree/main/sdk/mcp"
+
+[tool.hatch.build.targets.wheel]
+packages = ["h1news_mcp"]

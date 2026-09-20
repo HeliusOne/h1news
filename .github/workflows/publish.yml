@@ -1,0 +1,71 @@
+# Publish the SDKs on tag push. One tag per package:
+#   git tag python-v0.1.0 && git push origin python-v0.1.0   → PyPI: h1news
+#   git tag mcp-v0.1.0    && git push origin mcp-v0.1.0      → PyPI: h1news-mcp
+#   git tag ts-v0.1.0     && git push origin ts-v0.1.0       → npm:  @heliusone/h1news
+#
+# One-time setup (repo admin):
+#   PyPI  → https://pypi.org/manage/account/publishing/ → add a "pending publisher"
+#           for each project name (h1news, h1news-mcp) with owner HeliusOne, repo
+#           news-api, workflow publish.yml, environment pypi. No token needed after that.
+#   npm   → create the "heliusone" org (free for public packages), mint a granular
+#           access token with publish rights, save it as the NPM_TOKEN repo secret.
+name: publish
+
+on:
+  push:
+    tags: ["python-v*", "mcp-v*", "ts-v*"]
+
+permissions:
+  contents: read
+
+jobs:
+  pypi:
+    if: startsWith(github.ref_name, 'python-v') || startsWith(github.ref_name, 'mcp-v')
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write   # PyPI trusted publishing
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Pick the package from the tag
+        id: pkg
+        run: |
+          case "${{ github.ref_name }}" in
+            python-v*) echo "dir=sdk/python" >> "$GITHUB_OUTPUT"; echo "ver=${GITHUB_REF_NAME#python-v}" >> "$GITHUB_OUTPUT" ;;
+            mcp-v*)    echo "dir=sdk/mcp"    >> "$GITHUB_OUTPUT"; echo "ver=${GITHUB_REF_NAME#mcp-v}"    >> "$GITHUB_OUTPUT" ;;
+          esac
+      - name: Check the tag matches pyproject version
+        run: |
+          v=$(python -c "import tomllib;print(tomllib.load(open('${{ steps.pkg.outputs.dir }}/pyproject.toml','rb'))['project']['version'])")
+          [ "$v" = "${{ steps.pkg.outputs.ver }}" ] || { echo "tag ${{ steps.pkg.outputs.ver }} != pyproject $v"; exit 1; }
+      - name: Test (python package only)
+        if: startsWith(github.ref_name, 'python-v')
+        run: |
+          pip install -e "sdk/python[dev]"
+          pytest -q sdk/python/tests
+      - name: Build
+        run: pip install build && python -m build ${{ steps.pkg.outputs.dir }}
+      - uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: ${{ steps.pkg.outputs.dir }}/dist
+
+  npm:
+    if: startsWith(github.ref_name, 'ts-v')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "20", registry-url: "https://registry.npmjs.org" }
+      - name: Check the tag matches package.json version
+        working-directory: sdk/typescript
+        run: |
+          v=$(node -p "require('./package.json').version")
+          [ "$v" = "${GITHUB_REF_NAME#ts-v}" ] || { echo "tag != package.json ($v)"; exit 1; }
+      - working-directory: sdk/typescript
+        run: npm ci
+      - working-directory: sdk/typescript
+        run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

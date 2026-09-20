@@ -1,0 +1,5 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": { "module": "ES2020", "moduleResolution": "bundler", "outDir": "dist-test", "declaration": false, "rootDir": "." },
+  "include": ["src", "test"]
+}
