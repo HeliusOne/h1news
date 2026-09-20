@@ -5,8 +5,11 @@
 #
 # One-time setup (repo admin):
 #   PyPI  → https://pypi.org/manage/account/publishing/ → add a "pending publisher"
-#           for each project name (h1news, h1news-mcp) with owner HeliusOne, repo
-#           news-api, workflow publish.yml, environment pypi. No token needed after that.
+#           per project, owner HeliusOne, repo h1news, workflow publish.yml:
+#             h1news      → environment pypi
+#             h1news-mcp  → environment pypi-mcp
+#           PyPI requires a distinct (repo, workflow, environment) per project, so
+#           the two packages deploy through two GitHub environments. No token needed.
 #   npm   → create the "heliusone" org (free for public packages), mint a granular
 #           access token with publish rights, save it as the NPM_TOKEN repo secret.
 name: publish
@@ -22,7 +25,9 @@ jobs:
   pypi:
     if: startsWith(github.ref_name, 'python-v') || startsWith(github.ref_name, 'mcp-v')
     runs-on: ubuntu-latest
-    environment: pypi
+    # One environment per package: PyPI's trusted-publisher config must be unique
+    # per project, and the environment name is the only part that can differ.
+    environment: ${{ startsWith(github.ref_name, 'mcp-v') && 'pypi-mcp' || 'pypi' }}
     permissions:
       id-token: write   # PyPI trusted publishing
     steps:

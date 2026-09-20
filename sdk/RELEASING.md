@@ -6,7 +6,7 @@ Three packages, three registries, one tag each. Versions live in `sdk/python/pyp
 
 | Registry | Step |
 |---|---|
-| PyPI | Sign in as the HeliusOne account → [Publishing](https://pypi.org/manage/account/publishing/) → add a *pending publisher* for `h1news` and again for `h1news-mcp`: owner `HeliusOne`, repository `h1news`, workflow `publish.yml`, environment `pypi`. Then in GitHub → Settings → Environments create `pypi`. No API token is stored anywhere. |
+| PyPI | A maintainer with access to the HeliusOne PyPI account: [Publishing](https://pypi.org/manage/account/publishing/) → add a *pending publisher* per package, owner `HeliusOne`, repository `h1news`, workflow `publish.yml` — `h1news` with environment **`pypi`**, `h1news-mcp` with environment **`pypi-mcp`** (PyPI requires a distinct repo/workflow/environment combination per project). In GitHub → Settings → Environments create both, each restricted to its tag pattern (`python-v*`, `mcp-v*`). No API token is stored anywhere. |
 | npm | Create the free org `heliusone` at npmjs.com/org/create (public packages are free). Mint a granular access token with *Read and write* on packages, scoped to `@heliusone`, and save it as the `NPM_TOKEN` repository secret. |
 
 ## Every release
