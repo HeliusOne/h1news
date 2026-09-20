@@ -3,9 +3,7 @@
 An [MCP](https://modelcontextprotocol.io) server that gives an AI assistant real-time, ticker-tagged, sentiment-scored financial news from 135+ sources: search, per-ticker news, trading halts, SEC filings, regulator actions, central-bank news, sentiment, top-mentioned tickers, the earnings calendar, analyst ratings and the Sundown Digest. Get a key at [heliusone.com/newsapi](https://heliusone.com/newsapi).
 
 ```bash
-pip install h1news-mcp        # once published; until then:
-pip install "git+https://github.com/HeliusOne/h1news.git#subdirectory=sdk/python" \
-            "git+https://github.com/HeliusOne/h1news.git#subdirectory=sdk/mcp"
+pip install h1news-mcp
 ```
 
 ## Claude Desktop

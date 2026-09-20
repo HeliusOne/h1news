@@ -3,7 +3,7 @@
 An [OpenBB Platform](https://docs.openbb.co/platform) provider extension that backs `obb.news.company` and `obb.news.world` with the H1 News API — ticker-tagged, sentiment-scored, 135+ sources.
 
 ```bash
-pip install "git+https://github.com/HeliusOne/h1news.git#subdirectory=sdk/python"
+pip install h1news
 pip install "git+https://github.com/HeliusOne/h1news.git#subdirectory=examples/integrations/openbb_h1news"
 python -c "import openbb; openbb.build()"     # rebuild the static assets so the provider shows up
 ```

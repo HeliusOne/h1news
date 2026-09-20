@@ -27,4 +27,4 @@ python -m build sdk/mcp     && twine upload sdk/mcp/dist/*
 cd sdk/typescript && npm login && npm publish --access public      # prepublishOnly runs typecheck, tests and the build
 ```
 
-Publish `h1news` before `h1news-mcp`; the MCP server depends on it. After the first publish, remove the `git+…#subdirectory=` fallbacks from the three READMEs and the guides.
+Publish `h1news` before `h1news-mcp`; the MCP server depends on it. Releases so far: `python-v0.1.0`, `mcp-v0.1.0`, `ts-v0.1.0` (2026-09-20).

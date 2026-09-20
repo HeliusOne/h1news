@@ -3,8 +3,7 @@
 Real-time, ticker-tagged, sentiment-scored financial news from 135+ sources over REST and WebSocket. Node 18+ and browsers (via stream tokens). Get a key at [heliusone.com/newsapi](https://heliusone.com/newsapi); the endpoint reference is at [api.heliusone.com/docs](https://api.heliusone.com/docs).
 
 ```bash
-npm install @heliusone/h1news       # from npm once published; until then:
-npm install github:HeliusOne/h1news#main --workspace sdk/typescript
+npm install @heliusone/h1news
 ```
 
 ## REST

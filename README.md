@@ -16,7 +16,7 @@ Get a key: [heliusone.com/newsapi](https://heliusone.com/newsapi) — Basic $19.
 ## Quick start
 
 ```bash
-pip install h1news                         # or: pip install "git+https://github.com/HeliusOne/h1news.git#subdirectory=sdk/python"
+pip install h1news
 ```
 
 ```python

@@ -3,8 +3,7 @@
 Real-time, ticker-tagged, sentiment-scored financial news from 135+ sources over REST and WebSocket. Get a key at [heliusone.com/newsapi](https://heliusone.com/newsapi); the endpoint reference is at [api.heliusone.com/docs](https://api.heliusone.com/docs).
 
 ```bash
-pip install h1news            # from PyPI once published; until then:
-pip install "git+https://github.com/HeliusOne/h1news.git#subdirectory=sdk/python"
+pip install h1news
 ```
 
 ## REST
